@@ -104,4 +104,9 @@ class Trip extends BaseModel
             ->groupBy(['reservations_count', 'trips.id', 'trips.name', 'start_path.order', 'destination_path.order'])
             ->having('reservations_count', '<', 12);
     }
+
+    public function isAvailableForReservations($seatNumber)
+    {
+        return in_array($seatNumber, $this->available_seats);
+    }
 }

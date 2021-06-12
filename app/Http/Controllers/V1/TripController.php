@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Base\BaseController;
-use App\Http\Requests\getAvailableTripsRequest;
+use App\Http\Requests\GetAvailableTripsRequest;
 use App\Resources\TripResource;
 use App\Services\TripService;
 
@@ -19,11 +19,11 @@ class TripController extends BaseController
     /**
      * Get Available Trips Between Two Given Cities
      *
-     * @param getAvailableTripsRequest $request
+     * @param GetAvailableTripsRequest $request
      * @return JsonResource
      * @author Mohannad Elemary
      */
-    public function getAvailable(getAvailableTripsRequest $request)
+    public function getAvailable(GetAvailableTripsRequest $request)
     {
         return $this->service->getAvailableTripsBetweenTwoCities($request->all());
     }

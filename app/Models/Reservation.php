@@ -13,4 +13,15 @@ class Reservation extends BaseModel
         'path_order_end',
         'seat_number',
     ];
+
+    /**
+     * Every Reservation Belongs To a Trip
+     *
+     * @return BelongsTo
+     * @author Mohannad Elemary
+     */
+    public function trip()
+    {
+        return $this->belongsTo(Trip::class, 'trip_id');
+    }
 }

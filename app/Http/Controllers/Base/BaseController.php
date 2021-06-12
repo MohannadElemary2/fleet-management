@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Base;
 
-use App\Resources\SuccessResource;
+use App\Resources\Base\SuccessResource;
 use App\Services\Base\BaseServiceInterface;
 use Illuminate\Http\Response;
 
