@@ -40,6 +40,8 @@ php artisan db:seed
 ```sh
 php artisan test
 ```
+
+8- User login credentials are found in the postman collection, just replace the client ID and secret with yours:
 ***
 
 **Solution Idea**
