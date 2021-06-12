@@ -1,62 +1,54 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## About Fleet-Management Setup And Solution Idea
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Setup**
 
-## About Laravel
+After Installing, take a copy for .env.example to .env and fill out the system connection and tenant connection
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1 -
+```sh
+composer install
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2-
+```sh
+php artisan migrate
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3-
+```sh
+php artisan passport:install
+```
 
-## Learning Laravel
+4-
+```sh
+php artisan passport:keys
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+5-
+```sh
+php artisan passport:client --password
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* After That, you get your new Passport client to use it in the login
 
-## Laravel Sponsors
+6- 
+```sh
+php artisan db:seed
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+7- To run unit tests:
+```sh
+php artisan test
+```
+***
 
-### Premium Partners
+**Solution Idea**
+We want to make a feature of reserving available seats in trips. The trips are between cities and has a cities "stations" in between which could reserved as well. The idea is to asume that all those trips are paths and the in-between stations in the trips are paths as well.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+![Trip Example](https://i.ibb.co/wN3WfdZ/Screenshot-from-2021-06-12-21-47-28.png "Trip Example")
 
-## Contributing
+Let's asume we have a trip between Cairo and Alexandria as shown in the image. We are defining a number for every path between the in-between cities. The whole trip is from path 1 to path 4. If we want to reserve a trip between Faiyum and Asyut, that mean we will reserve fromn the path 2 to 3 and so on.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+The whole idea is we are dealing with the trip as a sequence of ordered paths that has a start point and end point. When reserving a new trip, all we need is to check the new reservation path and compare it with the current reservations. We do this comparison be checking the overlappings. If there are an overlap, that means another person is already taking a seat in some point of the new reservation path.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Every reservation is reserving a seat and every tip has 12 seats. That means if we are having a 12 overlapping, this trip is unavailable for the new needed reservation as all seats is having peole reserved it at some point on the trip.
