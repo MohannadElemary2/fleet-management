@@ -42,6 +42,8 @@ php artisan test
 ```
 
 8- User login credentials are found in the postman collection, just replace the client ID and secret with yours:
+
+9- Postman Collection: [Postman Collection](https://documenter.getpostman.com/view/8868758/TzeTK9Z7#intro).
 ***
 
 **Solution Idea**
