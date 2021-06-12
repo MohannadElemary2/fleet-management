@@ -634,7 +634,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this;
     }
 
-    public function join($fromAlias, $join, $alias, $condition = null)
+    public function join($fromAlias, $join, $alias = null, $condition = null)
     {
         $this->model = $this->model->join($fromAlias, $join, $alias, $condition);
         return $this;
@@ -667,5 +667,17 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function edit($data)
     {
         return $this->model->update($data);
+    }
+
+    public function withCount($relations)
+    {
+        $this->model = $this->model->withCount($relations);
+        return $this;
+    }
+
+    public function select($columns)
+    {
+        $this->model = $this->model->select($columns);
+        return $this;
     }
 }

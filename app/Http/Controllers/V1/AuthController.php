@@ -35,8 +35,7 @@ class AuthController extends BaseController
         return new SuccessResource(
             $data,
             __('users/messages.success_login'),
-            Response::HTTP_OK,
-            $data
+            Response::HTTP_OK
         );
     }
 }

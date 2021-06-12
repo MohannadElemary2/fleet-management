@@ -16,8 +16,7 @@ class LoginTest extends TestCase
     {
         parent::setUp();
         
-        $this->artisan('passport:client', ['--password' => null, '--no-interaction' => true, '--provider' => 'users']);
-        $this->artisan('passport:keys', ['--no-interaction' => true]);
+        $this->prepareDatabase();
     }
 
     /**
