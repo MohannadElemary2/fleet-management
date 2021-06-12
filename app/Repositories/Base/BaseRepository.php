@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Repositories;
+namespace App\Repositories\Base;
 
 use App\Transformers\DropdownResource;
 use Illuminate\Contracts\Container\BindingResolutionException;

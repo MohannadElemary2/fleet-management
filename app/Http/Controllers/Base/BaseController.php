@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Base;
 
 use App\Resources\SuccessResource;
-use App\Services\BaseServiceInterface;
+use App\Services\Base\BaseServiceInterface;
 use Illuminate\Http\Response;
 
 class BaseController extends Controller
