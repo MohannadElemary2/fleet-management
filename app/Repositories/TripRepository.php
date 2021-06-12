@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\AppSettings;
 use App\Models\Trip;
 use App\Repositories\Base\BaseRepository;
 
@@ -39,7 +40,7 @@ class TripRepository extends BaseRepository
         ])
         ->scope('hasAvailableSeatsBetweenCities')
         ->with(['reservations'])
-        ->get();
+        ->paginate(AppSettings::PAGE_SIZE);
 
         return $trips;
     }
