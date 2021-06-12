@@ -31,7 +31,7 @@ php artisan passport:client --password
 
 * After That, you get your new Passport client to use it in the login
 
-6- 
+6- To have a dummy data to test, run the seeders:
 ```sh
 php artisan db:seed
 ```

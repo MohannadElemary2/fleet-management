@@ -52,6 +52,12 @@ class TripsSeeder extends Seeder
                 'start_city_id'             => $minyaCity->id,
                 'destination_city_id'       => $asyutCity->id,
             ],
+            [
+                'trip_id'                   => $trip1->id,
+                'order'                     => 4,
+                'start_city_id'             => $asyutCity->id,
+                'destination_city_id'       => $alexandriaCity->id,
+            ],
 
         ];
 
