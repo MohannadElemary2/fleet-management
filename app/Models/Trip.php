@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\SeatNumbers;
 use App\Models\Base\BaseModel;
+use Illuminate\Support\Facades\DB;
 
 class Trip extends BaseModel
 {
@@ -99,7 +100,8 @@ class Trip extends BaseModel
         return $query
             ->withCount(['reservations' => function ($q) {
                 $q->whereColumn('reservations.path_order_start', '<=', 'destination_path.order')
-                ->whereColumn('reservations.path_order_end', '>=', 'start_path.order');
+                ->whereColumn('reservations.path_order_end', '>=', 'start_path.order')
+                ->select(DB::raw('count(distinct(seat_number))'));
             }])
             ->groupBy(['reservations_count', 'trips.id', 'trips.name', 'start_path.order', 'destination_path.order'])
             ->having('reservations_count', '<', 12);
