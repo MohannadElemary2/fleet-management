@@ -2,6 +2,7 @@
 
 namespace App\Models\Base;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -9,7 +10,7 @@ use Laravel\Passport\HasApiTokens;
 
 class AuthBaseModel extends Authenticatable
 {
-    use SoftDeletes, Notifiable, HasApiTokens;
+    use SoftDeletes, Notifiable, HasApiTokens, HasFactory;
 
     protected $casts = [
         'created_at' => 'timestamp',
